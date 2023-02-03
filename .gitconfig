@@ -1,0 +1,12 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = Aviion Gibbs
+	email = xanthus58@protonmail.com
+	signingkey = 415E7975A9F924EB
+[gpg]
+	signingkey = /usr/bin/gpg
+[commit]
+	gpgsign = true
+[credential]
+	helper = store
