@@ -3,7 +3,7 @@ if status is-interactive
 end
 
 #Custom Alias
-alias sysupdate="yay"
+alias supdate="yay"
 
 #Init for starship customization
 starship init fish | source
