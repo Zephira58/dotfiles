@@ -11,4 +11,4 @@
 [credential]
 	helper = store
 [core]
-	editor = nano
+	editor = nvim
