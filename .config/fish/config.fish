@@ -11,6 +11,9 @@ alias sshlog="journalctl -u ssh"
 #Management
 alias update="yay"
 alias uninstall="yay -Rns"
+alias search="yay -Ss"
+alias install="yay -S"
+alias listprograms="yay -Q"
 
 #Programming utils
 alias gacp="git add .; git commit; git push"
