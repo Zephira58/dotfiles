@@ -5,7 +5,7 @@
 	email = xanthus58@protonmail.com
 	signingkey = 415E7975A9F924EB
 [gpg]
-	signingkey = /usr/bin/gpg
+	program = /usr/bin/gpg
 [commit]
 	gpgsign = true
 [credential]
