@@ -23,37 +23,6 @@
 # m h  dom mon dow   command
 
 # Backup ampbox conan instances to local daily then push to uvps
-@daily rclone sync ampbox:/home/amp/.ampdata/instances/conansmp01/Backups local:/homelab/ampbox-backup/conan-exiled-lands
-@daily rclone sync local:/homelab/ampbox-backup/conan-exiled-lands uvpsroot:/homelab/backup/conan/
-
-
-#Backup ubuntubox mincraft servers to local daily
-@daily rclone sync uvpsroot:/home/amp/.ampdata/instances/mc-xvr01/Backups local:/homelab/ubuntubox-backup/mc-xvr
-@daily rclone sync uvpsroot:/home/amp/.ampdata/instances/vanilla-smp01/Backups local:/homelab/ubuntubox-backup/reddit-smp
-
-#Back up my nextcloud to mega on server start and daily and ubuntubox
-@daily rclone sync local:/homelab/nextcloud/data/xanthus/files/megasync/ mega-xan:/ --log-level INFO --log-file=/home/xanthus/mega-rclone.log
-@daily rclone sync local:/homelab/nextcloud/data/xanthus/files/megasync/ uvpsroot:/home/xanthus --log-level INFO --log-file=/home/xanthus/uvps-rclone.log
-
-#* * * * * rclone sync local:/homelab/nextcloud/data/xanthus/files/megasync/ mega-xan:/ --log-level INFO --log-file=/home/xanthus/rclone.log
-#* * * * *  echo $(date) > /home/xanthus/$(date +"%Y-%m-%d").log
-#* * * * *  echo $(date) > /home/xanthus/error.log
-#
-# Notice that tasks will be started based on the cron's system
-# daemon's notion of time and timezones.
-#
-# Output of the crontab jobs (including errors) is sent through
-# email to the user the crontab file belongs to (unless redirected).
-#
-# For example, you can run a backup of all your user accounts
-# at 5 a.m every week with:
-# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
-#
-# For more information see the manual pages of crontab(5) and cron(8)
-#
-# m h  dom mon dow   command
-
-# Backup ampbox conan instances to local daily then push to uvps
 @daily rclone sync ampbox:/home/amp/.ampdata/instances/conansmp01/Backups local:/homelab/ampbox-backup/conan-exiled-lands #Pull from ampbox to local
 @daily rclone sync local:/homelab/ampbox-backup/conan-exiled-lands uvpsroot:/homelab/backup/conan/ #Push from local to uvps
 
@@ -65,6 +34,11 @@
 #Back up my nextcloud to mega on server start and daily and ubuntubox
 @daily rclone sync local:/homelab/nextcloud/data/xanthus/files/megasync/ mega-xan:/ --log-level INFO --log-file=/home/xanthus/mega-rclone.log #Push from local to mega
 @daily rclone sync local:/homelab/nextcloud/data/xanthus/files/megasync/ uvpsroot:/home/xanthus --log-level INFO --log-file=/home/xanthus/uvps-rclone.log #Push fromn local to uvps
+@monthly 7z a /homelab/nextcloud-archive/$(date +"\%Y-\%m-\%d").7z /homelab/nextcloud/data/xanthus/files/megasync/ > /homelab/nextcloud-archive/$(date +"\%Y-\%m-\%d").log
+
+# Cron seems to use bash by default. You also need to escape any % characters to use them in a comand
+#* * * * * echo (date +"\%Y-\%m-\%d") > /homelab/nextcloud-archive/(date +"\%Y-\%m-\%d")-fish.log
+#* * * * * echo $(date +"\%Y-\%m-\%d") > /homelab/nextcloud-archive/$(date +"\%Y-\%m-\%d")-bash.log
 
 #* * * * * rclone sync local:/homelab/nextcloud/data/xanthus/files/megasync/ mega-xan:/ --log-level INFO --log-file=/home/xanthus/rclone.log
 #* * * * *  echo $(date) > /home/xanthus/$(date +"%Y-%m-%d").log
