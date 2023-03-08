@@ -33,4 +33,4 @@
 #Back up my nextcloud to mega on server start and daily and ubuntubox
 @weekly rclone sync local:/homelab/nextcloud/data/xanthus/files/megasync/ mega-xan:/ --log-level INFO --log-file=/home/xanthus/mega-rclone.log #Push from local to mega
 @weekly rclone sync local:/homelab/nextcloud/data/xanthus/files/megasync/ uvpsroot:/home/xanthus --log-level INFO --log-file=/home/xanthus/uvps-rclone.log #Push fromn local to uvps
-@monthly 7z a /homelab/nextcloud-archive/$(date +"\%Y-\%m-\%d").7z /homelab/nextcloud/data/xanthus/files/megasync/ > /homelab/nextcloud-archive/$(date +"\%Y-\%m-\%d").log
+@monthly 7z a -mx=9 /homelab/nextcloud-archive/$(date +"\%Y-\%m-\%d").7z /homelab/nextcloud/data/xanthus/files/megasync/ > /homelab/nextcloud-archive/$(date +"\%Y-\%m-\%d").log
