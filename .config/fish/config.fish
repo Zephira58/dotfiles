@@ -5,15 +5,15 @@ end
 #Custom Alias
 
 #Logs
-alias ufwlog="cat /var/log/ufw.log"
-alias sshlog="journalctl -u ssh"
+alias ufwlog="sudo cat /var/log/ufw.log"
+alias sshlog="sudo journalctl -u ssh"
 
 #Management
-alias update="yay"
-alias uninstall="yay -Rns"
-alias search="yay -Ss"
-alias install="yay -S"
-alias listprograms="yay -Q"
+alias update="sudo apt update -y; sudo apt full-upgrade -y; sudo apt autoremove -y"
+alias uninstall="sudo apt uninstall"
+alias search="sudo apt search"
+alias install="sudo apt install"
+alias listprograms="sudo apt list"
 
 #Programming utils
 alias gacp="git add .; git commit; git push"
@@ -22,6 +22,7 @@ alias gacp="git add .; git commit; git push"
 alias ..="cd .."
 alias mkdir="mkdir -pv"
 alias home="cd ~/"
+alias sortsize="find . -type f -print0 | xargs -0 du -h | sort -rh"
 
 #Misc
 alias grep="grep --color=auto"
