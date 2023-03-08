@@ -22,8 +22,9 @@ alias bashup="curl bashupload.com -T"
 #Filesystem
 alias ..="cd .."
 alias mkdir="mkdir -pv"
-alias home="cd ~/"
 alias sortsize="find . -type f -print0 | xargs -0 du -h | sort -rh"
+alias compress="7z a -mx=9"
+alias extract="7z x"
 
 #Misc
 alias grep="grep --color=auto"
