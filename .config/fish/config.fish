@@ -17,6 +17,7 @@ alias listprograms="sudo apt list"
 
 #Programming utils
 alias gacp="git add .; git commit; git push"
+alias bashup="curl bashupload.com -T"
 
 #Filesystem
 alias ..="cd .."
