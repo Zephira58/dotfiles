@@ -25,7 +25,6 @@ alias mkdir="mkdir -pv"
 alias sortsize="find . -type f -print0 | xargs -0 du -h | sort -rh"
 alias compress="7z a -mx=9"
 alias extract="7z x"
-alias rm="rm -rf"
 
 #Misc
 alias grep="grep --color=auto"
