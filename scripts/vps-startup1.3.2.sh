@@ -94,11 +94,13 @@ usermod --shell /usr/bin/fish $username
 echo "${GREEN}[xans-startup-script] Setting ownership of home directory${RESET}"
 chown -R $username:$username /home/$username
 
+# set automatic backup
+echo "${GREEN}[xans-startup-script] Configuring weekly automatic backups with Timeshift${RESET}"
+echo "@daily timeshift --create --yes" >> /var/spool/cron/crontabs/root
+
 # remind user to update information 
 echo "${GREEN}[xans-startup-script] -Default login credentials-${RESET}"
 echo "${GREEN}[xans-startup-script] Username: $username ${RESET}"
 echo "${GREEN}[xans-startup-script] Password: $password ${RESET}"
 echo "${GREEN}[xans-startup-script] Please use 'passwd' to change your password once you login${RESET}"
 echo "${GREEN}[xans-startup-script] Please use 'usermod -l xanthus <newusername>' to change your account name${RESET}"
-
-
