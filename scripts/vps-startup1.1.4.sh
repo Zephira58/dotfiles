@@ -102,6 +102,10 @@ chown -R $username:$username /home/$username
 echo "${GREEN}[xans-startup-script] Configuring weekly automatic backups with Timeshift${RESET}"
 echo "@daily timeshift --create --yes" >> /var/spool/cron/crontabs/root
 
+#take first backup
+echo "${GREEN}[xans-startup-script] Taking initial backup with Timeshift${RESET}"
+timeshift --create --yes --comment "[xans-startup-script] Initial Backup"
+
 # remind user to update information 
 echo "${GREEN}[xans-startup-script] -Default login credentials-${RESET}"
 echo "${GREEN}[xans-startup-script] Username: $username ${RESET}"
