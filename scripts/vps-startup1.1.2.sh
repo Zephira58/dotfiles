@@ -55,7 +55,7 @@ echo "${GREEN}[xans-startup-script] Starting and enabling Docker${RESET}"
 systemctl start docker
 systemctl enable docker
 echo "${GREEN}[xans-startup-script] Starting and deploying Netdata${RESET}"
-docker run -d --name=netdata --net=host netdata/netdata:stable
+docker run -d --name=netdata -p 80:19999 netdata/netdata:stable
 
 # create and configure user account
 echo "${GREEN}[xans-startup-script] Creating and configuring admin user account${RESET}"
@@ -85,6 +85,7 @@ chmod -R 700 /home/$username/.config
 curl https://raw.githubusercontent.com/Xanthus58/dotfiles/main/.config/fish/config.fish > /home/$username/.config/fish/config.fish
 echo "starship init fish | source" >> /home/$username/.config/fish/config.fish
 chmod 664 /home/$username/.config/fish/config.fish
+usermod --shell /usr/bin/fish $username
 
 # set ownership of home directory to user
 echo "${GREEN}[xans-startup-script] Setting ownership of home directory${RESET}"
