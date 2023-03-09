@@ -56,6 +56,9 @@ systemctl start docker
 systemctl enable docker
 echo "${GREEN}[xans-startup-script] Starting and deploying Netdata${RESET}"
 docker run -d --name=netdata -p 80:19999 netdata/netdata:stable
+echo "${GREEN}[xans-startup-script] Starting and enabling UFW${RESET}"
+systemctl start ufw
+systemctl enable ufw
 
 # create and configure user account
 echo "${GREEN}[xans-startup-script] Creating and configuring admin user account${RESET}"
