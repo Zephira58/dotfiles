@@ -40,6 +40,8 @@ echo "${GREEN}[xans-startup-script] Installing Cron${RESET}"
 apt install cron -y
 echo "${GREEN}[xans-startup-script] Installing Sudo${RESET}"
 apt install sudo -y
+echo "${GREEN}[xans-startup-script] Installing Timeshift${RESET}"
+apt install timeshift -y
 
 # start and enable services
 echo "${GREEN}[xans-startup-script] Starting and enabling Cron${RESET}"
