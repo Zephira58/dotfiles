@@ -45,9 +45,6 @@ apt install sudo -y
 echo "${GREEN}[xans-startup-script] Starting and enabling Cron${RESET}"
 systemctl enable cron
 systemctl start cron
-echo "${GREEN}[xans-startup-script] Starting and enabling Fail2ban${RESET}"
-systemctl start fail2ban
-systemctl enable fail2ban
 echo "${GREEN}[xans-startup-script] Starting and enabling OpenSSH Server${RESET}"
 systemctl start sshd
 systemctl enable sshd
@@ -59,6 +56,13 @@ docker run -d --name=netdata -p 80:19999 netdata/netdata:stable
 echo "${GREEN}[xans-startup-script] Starting and enabling UFW${RESET}"
 systemctl start ufw
 systemctl enable ufw
+ufw allow 22/tcp
+echo "y" | ufw enable
+
+
+echo "${GREEN}[xans-startup-script] Starting and enabling Fail2ban${RESET}"
+systemctl enable fail2ban
+systemctl start fail2ban
 
 # create and configure user account
 echo "${GREEN}[xans-startup-script] Creating and configuring admin user account${RESET}"
