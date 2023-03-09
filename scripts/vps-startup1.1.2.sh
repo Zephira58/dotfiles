@@ -13,10 +13,10 @@ if [ "$(id -u)" -ne 0 ]; then
 	      exit 1
 fi
 
-# update and upgrade the operating system
-echo "${GREEN}[xans-startup-script] Updating the operating system${RESET}"
+# update and upgrade the server 
+echo "${GREEN}[xans-startup-script] Updating the package list${RESET}"
 apt update -y
-echo "${GREEN}[xans-startup-script] Upgrading the operating system${RESET}"
+echo "${GREEN}[xans-startup-script] Updating server software${RESET}"
 sudo apt full-upgrade -y
 echo "${GREEN}[xans-startup-script] Removing unused packages${RESET}"
 sudo apt autoremove -y
@@ -30,6 +30,8 @@ echo "${GREEN}[xans-startup-script] Installing 7zip${RESET}"
 apt install 7zip -y
 echo "${GREEN}[xans-startup-script] Installing Rclone${RESET}"
 curl https://rclone.org/install.sh | sudo bash
+echo "${GREEN}[xans-startup-script] Installing UFW${RESET}"
+apt install ufw -y
 echo "${GREEN}[xans-startup-script] Installing Fail2ban${RESET}"
 apt install fail2ban -y
 echo "${GREEN}[xans-startup-script] Installing OpenSSH Server${RESET}"
@@ -38,8 +40,6 @@ echo "${GREEN}[xans-startup-script] Installing Cron${RESET}"
 apt install cron -y
 echo "${GREEN}[xans-startup-script] Installing Sudo${RESET}"
 apt install sudo -y
-echo "${GREEN}[xans-startup-script] Installing UFW${RESET}"
-apt install ufw -y
 
 # start and enable services
 echo "${GREEN}[xans-startup-script] Starting and enabling Cron${RESET}"
@@ -58,7 +58,7 @@ echo "${GREEN}[xans-startup-script] Starting and deploying Netdata${RESET}"
 docker run -d --name=netdata --net=host netdata/netdata:stable
 
 # create and configure user account
-echo "${GREEN}[xans-startup-script] Creating and configuring user account${RESET}"
+echo "${GREEN}[xans-startup-script] Creating and configuring admin user account${RESET}"
 useradd -m -p $(openssl passwd -1 $password) -s /usr/bin/fish -G sudo $username
 usermod -aG sudo $username
 usermod -aG $username $username
@@ -90,6 +90,11 @@ chmod 664 /home/$username/.config/fish/config.fish
 echo "${GREEN}[xans-startup-script] Setting ownership of home directory${RESET}"
 chown -R $username:$username /home/$username
 
-# remind user to change password
+# remind user to update information 
+echo "${GREEN}[xans-startup-script] -Default login credentials-${RESET}"
+echo "${GREEN}[xans-startup-script] Username: $username ${RESET}"
+echo "${GREEN}[xans-startup-script] Password: $password ${RESET}"
 echo "${GREEN}[xans-startup-script] Please use 'passwd' to change your password once you login${RESET}"
+echo "${GREEN}[xans-startup-script] Please use 'usermod -l xanthus <newusername>' to change your account name${RESET}"
+
 
