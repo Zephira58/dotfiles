@@ -13,6 +13,10 @@ if [ "$(id -u)" -ne 0 ]; then
 	      exit 1
 fi
 
+# enable automatic service restart
+echo "${GREEN}[xans-startup-script] Enabling automatic service restart${RESET}"
+echo "$nrconf{restart} = 'a';" >> /etc/needrestart/needrestart.conf
+
 # update and upgrade the server 
 echo "${GREEN}[xans-startup-script] Updating the package list${RESET}"
 apt update -y
@@ -42,6 +46,8 @@ echo "${GREEN}[xans-startup-script] Installing Sudo${RESET}"
 apt install sudo -y
 echo "${GREEN}[xans-startup-script] Installing Timeshift${RESET}"
 apt install timeshift -y
+echo "${GREEN}[xans-startup-script] Installing HTOP${RESET}"
+apt install htop -y
 
 # start and enable services
 echo "${GREEN}[xans-startup-script] Starting and enabling Cron${RESET}"
