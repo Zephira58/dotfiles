@@ -24,7 +24,7 @@ sudo apt autoremove -y
 # install required packages
 echo "${GREEN}[xans-startup-script] Installing Fish shell${RESET}"
 apt install fish -y
-echo "[xans-startup-script] Installing Docker${RESET}"
+echo "${GREEN}[xans-startup-script] Installing Docker${RESET}"
 apt install docker.io -y
 echo "${GREEN}[xans-startup-script] Installing 7zip${RESET}"
 apt install 7zip -y
