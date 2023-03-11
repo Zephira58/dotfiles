@@ -7,6 +7,7 @@ end
 #Logs
 alias ufwlog="sudo cat /var/log/ufw.log"
 alias sshlog="sudo journalctl -u ssh"
+alias f2bstatus="sudo fail2ban-client status"
 
 #Management
 alias update="sudo apt update -y; sudo apt full-upgrade -y; sudo apt autoremove -y"
