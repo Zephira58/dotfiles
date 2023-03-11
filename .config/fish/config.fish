@@ -31,6 +31,13 @@ alias extract="7z x"
 alias grep="grep --color=auto"
 alias now="date +"%T""
 alias nowdate="date +\"%d-%m-%Y\""
+alias publicip="curl https://api.ipify.org"
+
+function privateip
+    set interface (ip route | grep '^default' | sed -e 's/^.*dev //' -e 's/ .*//')
+    ip addr show $interface | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | head -1
+end
 
 #Init for starship customization
+starship init fish | source
 starship init fish | source
