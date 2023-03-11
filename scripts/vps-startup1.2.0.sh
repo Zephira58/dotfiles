@@ -50,6 +50,8 @@ echo "${GREEN}[xans-startup-script] Installing HTOP${RESET}"
 apt install htop -y
 echo "${GREEN}[xans-startup-script] Installing Screen${RESET}"
 apt install screen -y
+echo "${GREEN}[xans-startup-script] Installing Rsnapshot${RESET}"
+apt install rsnapshot -y
 
 # start and enable services
 echo "${GREEN}[xans-startup-script] Starting and enabling Cron${RESET}"
@@ -111,6 +113,9 @@ chown -R $username:$username /home/$username
 # set automatic backup
 echo "${GREEN}[xans-startup-script] Configuring weekly automatic backups with Timeshift${RESET}"
 echo "@daily timeshift --create --yes" >> /var/spool/cron/crontabs/root
+echo "${GREEN}[xans-startup-script] Configuring and testing Rsnapshot${RESET}"
+curl https://raw.githubusercontent.com/Xanthus58/dotfiles/main/rsnapshot/base > /etc/rsnapshot.conf
+rsnapshot configtest
 
 #take first backup
 echo "${GREEN}[xans-startup-script] Taking initial backup with Timeshift${RESET}"
