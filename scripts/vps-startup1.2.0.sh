@@ -48,6 +48,8 @@ echo "${GREEN}[xans-startup-script] Installing Timeshift${RESET}"
 apt install timeshift -y
 echo "${GREEN}[xans-startup-script] Installing HTOP${RESET}"
 apt install htop -y
+echo "${GREEN}[xans-startup-script] Installing Screen${RESET}"
+apt install screen -y
 
 # start and enable services
 echo "${GREEN}[xans-startup-script] Starting and enabling Cron${RESET}"
