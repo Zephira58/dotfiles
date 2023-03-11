@@ -33,6 +33,12 @@ ps to local
 
 #Backup nextcloud's megasync directory to mega-xanthus and ubuntubox from oracle
 @weekly rclone sync local:/homelab/nextcloud/data/xanthus/files/megasync/ mega-xan:/ --log-level INFO --log-file=/homelab/logs/nextcloud/$(date +"\%Y-\%m-\%d")-mega-sync.log #Push from local to mega
-@weekly rclone sync local:/homelab/nextcloud/data/xanthus/files/megasync/ uvpsroot:/home/xanthus --log-level INFO --log-file=/homelab/logs/nextcloud/$(date +"\%Y-\%m-\%d")-ubuntubox-sync.log #Push fromn local to uvps
+@weekly rclone copy local:/homelab/nextcloud/data/xanthus/files/megasync/ uvpsroot:/home/xanthus --log-level INFO --log-file=/homelab/logs/nextcloud/$(date +"\%Y-\%m-\%d")-ubuntubox-sync.log #Push fromn local to uvps
 @weekly rclone cleanup mega-xan:/ -v > /homelab/logs/nextcloud/$(date +"\%Y-\%m-\%d")-mega-cleanup.log
-@monthly 7z a -mx=9 /homelab/nextcloud-archive/$(date +"\%Y-\%m-\%d").7z /homelab/nextcloud/data/xanthus/files/megasync/ > /homelab/logs/nextcloud/$(date +"\%Y-\%m-\%d").log
+
+#Backup Nextcloud locally
+#@monthly 7z a -mx=9 /homelab/nextcloud-archive/$(date +"\%Y-\%m-\%d").7z /homelab/nextcloud/data/xanthus/files/megasync/ > /homelab/logs/nextcloud/$(date +"\%Y-\%m-\%d").log
+@daily rsnapshot daily
+@weekly rsnapshot weekly
+@monthly rsnapshot monthly
+@weekly rm -rf /var/run/rsnapshot.pid #Remove lockfile incase server powers off during backup
