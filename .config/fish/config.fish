@@ -40,4 +40,3 @@ end
 
 #Init for starship customization
 starship init fish | source
-starship init fish | source
