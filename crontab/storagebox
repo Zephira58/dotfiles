@@ -22,23 +22,20 @@
 #
 # m h  dom mon dow   command
 
-#Backup ampbox conan instances to local daily then push to uvps
-@weekly rclone sync ampbox:/home/amp/.ampdata/instances/conansmp01/Backups local:/homelab/ampbox-backup/conan-exiled-lands --log-level INFO --log-file=/homelab/logs/conan/$(date +"\%Y-\%m-\%d")-ampbox-pull.log #Pull from ampbox to local
-@weekly rclone sync local:/homelab/ampbox-backup/conan-exiled-lands uvpsroot:/homelab/backup/conan/ --log-level INFO --log-file=/homelab/logs/conan/$(date +"\%Y-\%m-\%d")-ubuntubox-push.log #Push from local to uvps
+#Backup local conan server to uvpsroot
+@weekly rclone sync ampbox:/home/amp/.ampdata/instances/conansmp01/Backups uvpsroot:/homelab/backup/conan/ #Pull from ampbox to ubuntubox
 
 #Backup ubuntubox mincraft servers to local daily
 @weekly rclone sync uvpsroot:/home/amp/.ampdata/instances/mc-xvr01/Backups local:/homelab/ubuntubox-backup/mc-xvr --log-level INFO --log-file=/homelab/logs/minecraft/$(date +"\%Y-\%m-\%d")-ubuntubox-mcxvr-pull.log #Pull from uvps to local
 @weekly rclone sync uvpsroot:/home/amp/.ampdata/instances/vanilla-smp01/Backups local:/homelab/ubuntubox-backup/reddit-smp --log-level INFO --log-file=/homelab/logs/minecraft/$(date +"\%Y-\%m-\%d")-ubuntubox-redditsmp-pull.log #Pull from uv
 ps to local
 
-#Backup nextcloud's megasync directory to mega-xanthus and ubuntubox from oracle
+#Backup nextcloud's megasync directory to mega-xanthus
 @weekly rclone sync local:/homelab/nextcloud/data/xanthus/files/megasync/ mega-xan:/ --log-level INFO --log-file=/homelab/logs/nextcloud/$(date +"\%Y-\%m-\%d")-mega-sync.log #Push from local to mega
-@weekly rclone copy local:/homelab/nextcloud/data/xanthus/files/megasync/ uvpsroot:/home/xanthus --log-level INFO --log-file=/homelab/logs/nextcloud/$(date +"\%Y-\%m-\%d")-ubuntubox-sync.log #Push fromn local to uvps
 @weekly rclone cleanup mega-xan:/ -v > /homelab/logs/nextcloud/$(date +"\%Y-\%m-\%d")-mega-cleanup.log
 
-#Backup Nextcloud locally
-#@monthly 7z a -mx=9 /homelab/nextcloud-archive/$(date +"\%Y-\%m-\%d").7z /homelab/nextcloud/data/xanthus/files/megasync/ > /homelab/logs/nextcloud/$(date +"\%Y-\%m-\%d").log
-@daily rsnapshot daily
-@weekly rsnapshot weekly
-@monthly rsnapshot monthly
-@weekly rm -rf /var/run/rsnapshot.pid #Remove lockfile incase server powers off during backup
+#Use borgbackup to sync nextcloud locally and rclone to ubuntubox
+@daily borg create /mnt/borgback/nextcloud/::$(date +"\%Y-\%m-\%d") /homelab/nextcloud/data/xanthus/files/
+@weekly rclone sync local:/mnt/borgback/nextcloud/ uvpsroot:/home/xanthus/nextcloud-borg-backup/
+@weekly rclone cleanup mega-xan:/
+@weekly rclone cleanup uvpsroot:/
