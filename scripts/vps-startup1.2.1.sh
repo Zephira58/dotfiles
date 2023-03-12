@@ -1,16 +1,17 @@
 #!/usr/bin/env sh
 
+
 GREEN='\033[0;32m'  # Set the color code for green
-RESET='\033[0m'        # Reset the color code
-RED='\033[0;31m'
+RESET='\033[0m'     # Reset the color code
+RED='\033[0;31m'    # Sets color code to red
 
 username="xanthus"
 password="xanthus"
 
 # check if running as root
 if [ "$(id -u)" -ne 0 ]; then
-	   echo "${RED}[xans-startup-script] Please run as root${RESET}" >&2
-	      exit 1
+		   echo "${RED}[xans-startup-script] Please run as root${RESET}" >&2
+		   	      exit 1
 fi
 
 # enable automatic service restart
@@ -50,8 +51,11 @@ echo "${GREEN}[xans-startup-script] Installing HTOP${RESET}"
 apt install htop -y
 echo "${GREEN}[xans-startup-script] Installing Screen${RESET}"
 apt install screen -y
-echo "${GREEN}[xans-startup-script] Installing Rsnapshot${RESET}"
-apt install rsnapshot -y
+echo "${GREEN}[xans-startup-script] Installing Neofetch${RESET}"
+apt install neofetch -y
+echo "${GREEN}[xans-startup-script] Installing Borgbackup${RESET}"
+apt install borgbackup -y
+mkdir /mnt/borgbackup -p
 
 # start and enable services
 echo "${GREEN}[xans-startup-script] Starting and enabling Cron${RESET}"
@@ -63,14 +67,17 @@ systemctl enable sshd
 echo "${GREEN}[xans-startup-script] Starting and enabling Docker${RESET}"
 systemctl start docker
 systemctl enable docker
-echo "${GREEN}[xans-startup-script] Starting and deploying Netdata${RESET}"
+echo "${GREEN}[xans-startup-script] Deploying Netdata${RESET}"
 docker run -d --name=netdata -p 80:19999 netdata/netdata:stable
-echo "${GREEN}[xans-startup-script] Starting and enabling UFW${RESET}"
+echo "${GREEN}[xans-startup-script] Starting and configuring UFW${RESET}"
 systemctl start ufw
 systemctl enable ufw
 ufw allow 22/tcp
+ufw logging low
 echo "y" | ufw enable
-
+echo "${GREEN}[xans-startup-script] Adding localdisk to rclone config${RESET}"
+echo "[local]" >> /root/.config/rclone/rclone.conf
+echo "type = local" >> /root/.config/rclone/rclone.conf
 
 echo "${GREEN}[xans-startup-script] Starting and enabling Fail2ban${RESET}"
 systemctl enable fail2ban
@@ -100,7 +107,6 @@ curl -sS https://starship.rs/install.sh | sh
 # configure Fish shell
 echo "${GREEN}[xans-startup-script] Configuring Fish shell${RESET}"
 mkdir /home/$username/.config/fish/ -p
-chmod -R 700 /home/$username/.config 
 curl https://raw.githubusercontent.com/Xanthus58/dotfiles/main/.config/fish/config.fish > /home/$username/.config/fish/config.fish
 echo "starship init fish | source" >> /home/$username/.config/fish/config.fish
 chmod 664 /home/$username/.config/fish/config.fish
@@ -111,19 +117,25 @@ echo "${GREEN}[xans-startup-script] Setting ownership of home directory${RESET}"
 chown -R $username:$username /home/$username
 
 # set automatic backup
-echo "${GREEN}[xans-startup-script] Configuring weekly automatic backups with Timeshift${RESET}"
-echo "@daily timeshift --create --yes" >> /var/spool/cron/crontabs/root
-echo "${GREEN}[xans-startup-script] Configuring and testing Rsnapshot${RESET}"
-curl https://raw.githubusercontent.com/Xanthus58/dotfiles/main/rsnapshot/base > /etc/rsnapshot.conf
-rsnapshot configtest
+echo "${GREEN}[xans-startup-script] Configuringmonthly automatic backups with Timeshift${RESET}"
+echo "@monthly timeshift --create --yes" >> /var/spool/cron/crontabs/root
 
-#take first backup
+# take first backup
 echo "${GREEN}[xans-startup-script] Taking initial backup with Timeshift${RESET}"
 timeshift --create --yes --comment "[xans-startup-script] Initial Backup"
 
+# fetch private and public ip
+echo "${GREEN}[xans-startup-script] Fetching public/private ipv4 adresses${RESET}"
+interface=$(ip route get 8.8.8.8 | awk '{print $5; exit}')
+public_ip=$(curl https://api.ipify.org)
+local_ip=$(ip addr show $interface | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | head -1)
+
 # remind user to update information 
-echo "${GREEN}[xans-startup-script] -Default login credentials-${RESET}"
-echo "${GREEN}[xans-startup-script] Username: $username ${RESET}"
-echo "${GREEN}[xans-startup-script] Password: $password ${RESET}"
-echo "${GREEN}[xans-startup-script] Please use 'passwd' to change your password once you login${RESET}"
-echo "${GREEN}[xans-startup-script] Please use 'usermod -l xanthus <newusername>' to change your account name${RESET}"
+echo "${GREEN}[xans-startup-script] -Default login credentials-"
+echo "[xans-startup-script] Username: $username"
+echo "[xans-startup-script] Password: $password"
+echo "[xans-startup-script] Public IP: ${RED}$public_ip${GREEN}"
+echo "[xans-startup-script] Private IP: ${RED}$local_ip${GREEN}"
+echo "[xans-startup-script] Please use 'passwd' to change your password once you login"
+echo "[xans-startup-script] Please use 'usermod -l xanthus <newusername>' to change your account name"
+echo "[xans-startup-script] Netdata has been deployed. This is a system monitor tool that can be accessed from your web browser.${RESET}"
