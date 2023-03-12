@@ -77,6 +77,7 @@ ufw logging low
 echo "y" | ufw enable
 echo "${GREEN}[xans-startup-script] Adding localdisk to rclone config${RESET}"
 echo "[local]" >> /root/.config/rclone/rclone.conf
+mkdir /root/.config/rclone/ -p
 echo "type = local" >> /root/.config/rclone/rclone.conf
 
 echo "${GREEN}[xans-startup-script] Starting and enabling Fail2ban${RESET}"
@@ -117,7 +118,7 @@ echo "${GREEN}[xans-startup-script] Setting ownership of home directory${RESET}"
 chown -R $username:$username /home/$username
 
 # set automatic backup
-echo "${GREEN}[xans-startup-script] Configuringmonthly automatic backups with Timeshift${RESET}"
+echo "${GREEN}[xans-startup-script] Configuring monthly automatic backups with Timeshift${RESET}"
 echo "@monthly timeshift --create --yes" >> /var/spool/cron/crontabs/root
 
 # take first backup
@@ -132,10 +133,10 @@ local_ip=$(ip addr show $interface | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | head 
 
 # remind user to update information 
 echo "${GREEN}[xans-startup-script] -Default login credentials-"
-echo "[xans-startup-script] Username: $username"
-echo "[xans-startup-script] Password: $password"
+echo "[xans-startup-script] Username: ${RED}$username${GREEN}"
+echo "[xans-startup-script] Password: ${RED}$password${GREEN}"
 echo "[xans-startup-script] Public IP: ${RED}$public_ip${GREEN}"
 echo "[xans-startup-script] Private IP: ${RED}$local_ip${GREEN}"
-echo "[xans-startup-script] Please use 'passwd' to change your password once you login"
-echo "[xans-startup-script] Please use 'usermod -l xanthus <newusername>' to change your account name"
+echo "[xans-startup-script] Please use '${RED}usermod -l xanthus <newusername>${GREEN}' to change your account name"
+echo "[xans-startup-script] Please use '${RED}passwd${GREEN}' to change your password once you login"
 echo "[xans-startup-script] Netdata has been deployed. This is a system monitor tool that can be accessed from your web browser.${RESET}"
