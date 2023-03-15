@@ -29,6 +29,8 @@ sudo apt autoremove -y
 # install required packages
 echo "${GREEN}[xans-startup-script] Installing Fish shell${RESET}"
 apt install fish -y
+echo "${GREEN}[xans-startup-script] Installing Exiftool${RESET}"
+apt install exiftool -y
 echo "${GREEN}[xans-startup-script] Installing Docker${RESET}"
 apt install docker.io -y
 echo "${GREEN}[xans-startup-script] Installing 7zip${RESET}"
