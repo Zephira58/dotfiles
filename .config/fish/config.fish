@@ -52,8 +52,8 @@ alias listprograms="sudo apt list"
 
 #Utils
 alias bashup="curl bashupload.com -T"
-alias metastrip="exiftool"
-alias metaview="exiftool -all="
+alias metastrip="exiftool -all="
+alias metaview="exiftool"
 
 #Filesystem
 alias ..="cd .."
