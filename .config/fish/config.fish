@@ -19,11 +19,14 @@ function xanman
         echo ""
         echo "-Utils-"
         echo "bashup <file>: Allows you to upload a single file for easy sharing"
+        echo "metastrip <file>: Strips the metadata of the file using exiftool"
+        echo "metaview <file>: Prints out all metadata of the file using exiftool"
         echo ""
         echo "-Filesystem-"
         echo "..: Goes one directory above your present working directory"
         echo "sortsize: Will automaticly sort all files by size reccursivly and print it"
-        echo 'compress <archivename> <directory>: Will use 7zip to automaticly archive the directory with the highest compression level'
+        echo 'compress <archivename> <directory>: Will use 7zip to automaticly archive the directory
+ with the highest compression level'
         echo "extract <archive>: Will extract the archive to the current directory"
         echo ""
         echo "-Misc-"
@@ -49,6 +52,8 @@ alias listprograms="sudo apt list"
 
 #Utils
 alias bashup="curl bashupload.com -T"
+alias metastrip="exiftool"
+alias metaview="exiftool -all="
 
 #Filesystem
 alias ..="cd .."
