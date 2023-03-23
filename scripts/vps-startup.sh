@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 
+#Version 1.3.1
 GREEN='\033[0;32m'  # Set the color code for green
 RESET='\033[0m'     # Reset the color code
 RED='\033[0;31m'    # Sets color code to red
