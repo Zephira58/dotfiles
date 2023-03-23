@@ -59,7 +59,7 @@ alias metastrip="exiftool -all="
 alias metaview="exiftool"
 alias encrypt="dexios -e"
 alias decrypt="dexios -d"
-alias securedelete="dexios erase --passes=1"
+alias securedelete="dexios erase --passes=3"
 
 #Filesystem
 alias ..="cd .."
