@@ -63,6 +63,8 @@ echo "${GREEN}[xans-startup-script] Installing Neovim${RESET}"
 apt install neovim -y
 echo "${GREEN}[xans-startup-script] Installing Git${RESET}"
 apt install git -y
+echo "${GREEN}[xans-startup-script] Installing exiftool${RESET}"
+apt install exiftool -y
 
 # start and enable services
 echo "${GREEN}[xans-startup-script] Starting and enabling Cron${RESET}"
