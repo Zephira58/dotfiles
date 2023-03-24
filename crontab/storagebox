@@ -36,4 +36,4 @@
 @weekly rclone cleanup hetznerstoragebox:/
 
 #Mount the drive daily incase something goes wrong
-@reboot rclone mount hetznerstorgebox:/zoneminder /homelab/hetznerstorgebox/zoneminder --allow-other --allow-non-empty -v > /homelab/logs/$(date +"\%Y-\%m-\%d")-zoneminder-mount.txt
+#@reboot rclone mount hetznerstorgebox:/zoneminder /homelab/hetznerstorgebox/zoneminder --allow-other --allow-non-empty -v > /homelab/logs/$(date +"\%Y-\%m-\%d")-zoneminder-mount.txt
