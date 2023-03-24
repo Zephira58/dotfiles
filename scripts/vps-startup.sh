@@ -33,6 +33,7 @@ echo "${GREEN}[xans-startup-script] Installing Docker${RESET}"
 apt install docker.io -y
 echo "${GREEN}[xans-startup-script] Installing 7zip${RESET}"
 apt install 7zip -y
+apt install p7zip-full p7zip-rar -y
 echo "${GREEN}[xans-startup-script] Installing Rclone${RESET}"
 apt install rclone -y
 echo "${GREEN}[xans-startup-script] Installing UFW${RESET}"
