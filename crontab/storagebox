@@ -26,11 +26,14 @@
 @weekly rclone sync ampbox:/home/amp/.ampdata/instances/conansmp01/Backups hetznerstorgebox:/conansmp
 
 #Backup nextcloud's megasync directory to mega-xanthus
-@weekly rclone sync local:/homelab/nextcloud/data/xanthus/files/megasync/ mega-xan:/ --log-level INFO --log-file=/homelab/logs/nextcloud/$(date +"\%Y-\%m-\%d")-mega-sync.log #Push from local to mega
-@weekly rclone cleanup mega-xan:/ -v > /homelab/logs/nextcloud/$(date +"\%Y-\%m-\%d")-mega-cleanup.log
+@weekly rclone sync local:/homelab/nextcloud/data/xanthus/files/megasync/ mega-xan:/ #Push from local to mega
+@weekly rclone cleanup mega-xan:/
 
 #Use borgbackup to sync nextcloud locally and rclone to hetznerstoragebox
 @daily borg create /mnt/borgback/nextcloud/::$(date +"\%Y-\%m-\%d") /homelab/nextcloud/data/xanthus/files/
-@weekly rclone sync local:/mnt/borgback/nextcloud/ hetznerstoragebox:/borgbackup
+@weekly rclone sync local:/mnt/borgback/nextcloud/ hetznerstorgebox:/borgbackup
 @weekly rclone cleanup mega-xan:/
 @weekly rclone cleanup hetznerstoragebox:/
+
+#Mount the drive daily incase something goes wrong
+@reboot rclone mount hetznerstorgebox:/zoneminder /homelab/hetznerstorgebox/zoneminder --allow-other --allow-non-empty -v > /homelab/logs/$(date +"\%Y-\%m-\%d")-zoneminder-mount.txt
