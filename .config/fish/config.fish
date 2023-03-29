@@ -37,6 +37,7 @@ function xanman
         echo "now: Will print the current time"
         echo "publicip: Will print your ipv4 adress"
         echo "privateip: Prints your private ipv4 server adress"
+        echo "portview: Will display all services and what port their running on" 
 end
 
 #Custom Alias
@@ -73,6 +74,7 @@ alias grep="grep --color=auto"
 alias now="date +"%T""
 alias nowdate="date +\"%d-%m-%Y\""
 alias publicip="curl https://api.ipify.org"
+alias portview="sudo netstat -tunlp"
 
 function privateip
     set interface (ip route | grep '^default' | sed -e 's/^.*dev //' -e 's/ .*//')
