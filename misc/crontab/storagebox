@@ -1,5 +1,5 @@
 # Edit this file to introduce tasks to be run by cron.
-#
+# 
 # Each task to run has to be defined through a single line
 # indicating with different fields when the task will be run
 # and what command to run for the task
@@ -31,9 +31,9 @@
 
 #Use borgbackup to sync nextcloud locally and rclone to hetznerstoragebox
 @daily borg create /mnt/borgback/nextcloud/::$(date +"\%Y-\%m-\%d") /homelab/nextcloud/data/xanthus/files/
-@monthly rclone sync local:/mnt/borgback/nextcloud/ hetznerstorgebox:/borgbackup
-@weekly rclone cleanup mega-xan:/
+#@weekly rclone sync local:/mnt/borgback/nextcloud/ hetznerstorgebox:/borgbackup
 @weekly rclone cleanup hetznerstoragebox:/
+@weekly rclone copy local:/homelab/nextcloud/data/xanthus/files/ hetznerstorgebox:/nextcloud
 
 #Mount the drive daily incase something goes wrong
 #@reboot rclone mount hetznerstorgebox:/zoneminder /homelab/hetznerstorgebox/zoneminder --allow-other --allow-non-empty -v > /homelab/logs/$(date +"\%Y-\%m-\%d")-zoneminder-mount.txt
