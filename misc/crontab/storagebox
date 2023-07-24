@@ -3,27 +3,24 @@
 # Each task to run has to be defined through a single line
 # indicating with different fields when the task will be run
 # and what command to run for the task
-#
+# 
 # To define the time you can provide concrete values for
 # minute (m), hour (h), day of month (dom), month (mon),
 # and day of week (dow) or use '*' in these fields (for 'any').
-#
+# 
 # Notice that tasks will be started based on the cron's system
 # daemon's notion of time and timezones.
-#
+# 
 # Output of the crontab jobs (including errors) is sent through
 # email to the user the crontab file belongs to (unless redirected).
-#
+# 
 # For example, you can run a backup of all your user accounts
 # at 5 a.m every week with:
 # 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
-#
+# 
 # For more information see the manual pages of crontab(5) and cron(8)
-#
+# 
 # m h  dom mon dow   command
-
-#Backup local conan server to hetznerstoragebox
-@weekly rclone sync ampbox:/home/amp/.ampdata/instances/conansmp01/Backups hetznerstorgebox:/conansmp
 
 #Backup nextcloud's megasync directory to mega-xanthus
 @monthly rclone sync local:/homelab/nextcloud/data/xanthus/files/megasync/ mega-xan:/ #Push from local to mega
@@ -31,9 +28,8 @@
 
 #Use borgbackup to sync nextcloud locally and rclone to hetznerstoragebox
 @daily borg create /mnt/borgback/nextcloud/::$(date +"\%Y-\%m-\%d") /homelab/nextcloud/data/xanthus/files/
-#@weekly rclone sync local:/mnt/borgback/nextcloud/ hetznerstorgebox:/borgbackup
+@weekly rclone sync local:/mnt/borgback/nextcloud/ hetznerstorgebox:/borgbackup
 @weekly rclone cleanup hetznerstoragebox:/
-@weekly rclone copy local:/homelab/nextcloud/data/xanthus/files/ hetznerstorgebox:/nextcloud
 
-#Mount the drive daily incase something goes wrong
-#@reboot rclone mount hetznerstorgebox:/zoneminder /homelab/hetznerstorgebox/zoneminder --allow-other --allow-non-empty -v > /homelab/logs/$(date +"\%Y-\%m-\%d")-zoneminder-mount.txt
+#Backup game archives from pterodactyl to my storage box
+@weekly rclone sync pterobox:/var/lib/pterodactyl/backups hetznerstorgebox:/zomboid
