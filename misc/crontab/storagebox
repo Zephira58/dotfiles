@@ -32,5 +32,5 @@
 @weekly rclone cleanup hetznerstoragebox:/
 
 #Backup game archives from pterodactyl to my storage box
-@weekly rclone sync pterobox:/var/lib/pterodactyl/backups hetznerstorgebox:/zomboid
-@weekly rclone sync pterobox:/var/lib/pterodactyl/backups local:/homelab/pterobox-backup/zomboid
+@weekly rclone sync pterobox:/var/lib/pterodactyl/backups hetznerstorgebox:/backups
+@weekly rclone sync pterobox:/var/lib/pterodactyl/backups local:/homelab/pterobox-backup/backups
