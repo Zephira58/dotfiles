@@ -32,5 +32,9 @@
 @weekly rclone cleanup hetznerstoragebox:/
 
 #Backup game archives from pterodactyl to my storage box
-@weekly rclone sync pterobox:/var/lib/pterodactyl/backups hetznerstorgebox:/backups
+@weekly rclone sync pterobox:/var/lib/pterodactyl/backups hetznerstorgebox:/archives/pterodactyl
 @weekly rclone sync pterobox:/var/lib/pterodactyl/backups local:/homelab/pterobox-backup/backups
+
+#Backups Wolfens ploud modded server
+@weekly rclone sync ploud-wolfen:/ local:/homelab/archives/wolfen-modded-minecraft-server
+@weekly rclone sync ploud-wolfen:/ hetznerstorgebox:/archives/wolfen-modded-minecraft-server
