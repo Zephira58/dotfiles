@@ -29,6 +29,7 @@
 #Use borgbackup to sync nextcloud locally and rclone to hetznerstoragebox
 @daily borg create /mnt/borgback/nextcloud/::$(date +"\%Y-\%m-\%d") /homelab/nextcloud/data/xanthus/files/
 @weekly rclone sync local:/mnt/borgback/nextcloud/ hetznerstorgebox:/borgbackup
+@weekly rclone sync local:/homelab/nextcloud/data/xanthus/files hetznerstorgebox:/nextcloud
 @weekly rclone cleanup hetznerstoragebox:/
 
 #Backup game archives from pterodactyl to my storage box
