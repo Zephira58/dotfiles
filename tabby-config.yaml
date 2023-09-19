@@ -1,0 +1,241 @@
+version: 6
+profiles: []
+groups: []
+hotkeys:
+  toggle-window:
+    - Ctrl-Space
+  copy-current-path: []
+  ctrl-c:
+    - Ctrl-C
+  copy:
+    - Ctrl-Shift-C
+  paste:
+    - Ctrl-Shift-V
+    - Shift-Insert
+  select-all:
+    - Ctrl-Shift-A
+  clear: []
+  zoom-in:
+    - Ctrl-=
+    - Ctrl-Shift-=
+  zoom-out:
+    - Ctrl--
+    - Ctrl-Shift--
+  reset-zoom:
+    - Ctrl-0
+  home:
+    - Home
+  end:
+    - End
+  previous-word:
+    - Ctrl-Left
+  next-word:
+    - Ctrl-Right
+  delete-previous-word:
+    - Ctrl-Backspace
+  delete-line:
+    - Ctrl-Shift-Backspace
+  delete-next-word:
+    - Ctrl-Delete
+  search:
+    - Ctrl-Shift-F
+  pane-focus-all:
+    - Ctrl-Shift-I
+  focus-all-tabs:
+    - Ctrl-Alt-Shift-I
+  scroll-to-top:
+    - Ctrl-PageUp
+  scroll-up:
+    - Alt-PageUp
+  scroll-down:
+    - Alt-PageDown
+  scroll-to-bottom:
+    - Ctrl-PageDown
+  restart-telnet-session: []
+  restart-ssh-session: []
+  launch-winscp: []
+  settings-tab: {}
+  settings:
+    - Ctrl-,
+  serial:
+    - Alt-K
+  restart-serial-session: []
+  new-tab:
+    - Ctrl-Shift-T
+  new-window:
+    - Ctrl-Shift-N
+  profile: {}
+  profile-selectors: {}
+  toggle-fullscreen:
+    - F11
+    - Alt-Enter
+  close-tab:
+    - Ctrl-Shift-W
+  reopen-tab:
+    - Ctrl-Shift-Z
+  toggle-last-tab: []
+  rename-tab:
+    - Ctrl-Shift-R
+  next-tab:
+    - Ctrl-Shift-Right
+    - Ctrl-Tab
+  previous-tab:
+    - Ctrl-Shift-Left
+    - Ctrl-Shift-Tab
+  move-tab-left:
+    - Ctrl-Shift-PageUp
+  move-tab-right:
+    - Ctrl-Shift-PageDown
+  rearrange-panes:
+    - Ctrl-Shift
+  duplicate-tab: []
+  restart-tab: []
+  reconnect-tab: []
+  disconnect-tab: []
+  explode-tab:
+    - Ctrl-Shift-.
+  combine-tabs:
+    - Ctrl-Shift-,
+  tab-1:
+    - Alt-1
+  tab-2:
+    - Alt-2
+  tab-3:
+    - Alt-3
+  tab-4:
+    - Alt-4
+  tab-5:
+    - Alt-5
+  tab-6:
+    - Alt-6
+  tab-7:
+    - Alt-7
+  tab-8:
+    - Alt-8
+  tab-9:
+    - Alt-9
+  tab-10:
+    - Alt-0
+  tab-11: []
+  tab-12: []
+  tab-13: []
+  tab-14: []
+  tab-15: []
+  tab-16: []
+  tab-17: []
+  tab-18: []
+  tab-19: []
+  tab-20: []
+  split-right:
+    - Ctrl-Shift-S
+  split-bottom:
+    - Ctrl-Shift-D
+  split-left: []
+  split-top: []
+  pane-nav-right:
+    - Ctrl-Alt-Right
+  pane-nav-down:
+    - Ctrl-Alt-Down
+  pane-nav-up:
+    - Ctrl-Alt-Up
+  pane-nav-left:
+    - Ctrl-Alt-Left
+  pane-nav-previous:
+    - Ctrl-Alt-[
+  pane-nav-next:
+    - Ctrl-Alt-]
+  pane-nav-1: []
+  pane-nav-2: []
+  pane-nav-3: []
+  pane-nav-4: []
+  pane-nav-5: []
+  pane-nav-6: []
+  pane-nav-7: []
+  pane-nav-8: []
+  pane-nav-9: []
+  pane-maximize:
+    - Ctrl-Alt-Enter
+  close-pane: []
+  pane-increase-vertical: []
+  pane-decrease-vertical: []
+  pane-increase-horizontal: []
+  pane-decrease-horizontal: []
+  switch-profile:
+    - Ctrl-Alt-T
+  profile-selector:
+    - Ctrl-Shift-E
+  command-selector:
+    - Ctrl-Shift-P
+terminal:
+  searchOptions: {}
+  colorScheme:
+    name: Tabby Default
+    foreground: '#cacaca'
+    background: '#171717'
+    cursor: '#bbbbbb'
+    colors:
+      - '#000000'
+      - '#ff615a'
+      - '#b1e969'
+      - '#ebd99c'
+      - '#5da9f6'
+      - '#e86aff'
+      - '#82fff7'
+      - '#dedacf'
+      - '#313131'
+      - '#f58c80'
+      - '#ddf88f'
+      - '#eee5b2'
+      - '#a5c7ff'
+      - '#ddaaff'
+      - '#b7fff9'
+      - '#ffffff'
+  customColorSchemes: []
+ssh:
+  winSCPPath: C:\Users\xanthus\AppData\Local\Programs\WinSCP
+  knownHosts:
+    - host: 207.211.155.14
+      port: 22
+      type: ecdsa-sha2-nistp256
+      digest: G5b1+DcHilBo4BR4mBzxuWErvPhS13r+LaRsELlfRsg=
+    - host: 192.168.1.158
+      port: 22
+      type: ecdsa-sha2-nistp256
+      digest: RpWz+LUsX6BcCzPn72uuFO8Bq+gyZ4vWit6rTUsf590=
+    - host: 192.168.1.153
+      port: 22
+      type: ecdsa-sha2-nistp256
+      digest: q2F0vSlniZRW68RFAGa0sO0LLE1bkYd6plAAVU3OJTA=
+clickableLinks: {}
+accessibility: {}
+appearance: {}
+hacks: {}
+providerBlacklist: []
+commandBlacklist: []
+enableAnalytics: false
+enableWelcomeTab: false
+pluginBlacklist: []
+profileBlacklist:
+  - local:clink
+  - local:vs-cmd-2022
+  - local:git-bash
+  - local:default
+  - local:powershell-core
+  - serial:template
+  - serial:port-COM1
+  - socket:template
+  - telnet:template
+  - local:wsl
+  - local:wsl-docker-desktop-data
+  - local:wsl-Ubuntu
+profileDefaults:
+  ssh:
+    disableDynamicTitle: true
+vault:
+  version: 1
+  contents: >-
+    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
+  keySalt: b18613108ac2b1a7
+  iv: 13e8c65e8e704851cb9d61cfe16d1450
+configSync:
+  parts: {}
