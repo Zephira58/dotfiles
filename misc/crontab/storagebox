@@ -23,11 +23,12 @@
 # m h  dom mon dow   command
 
 #Backup nextcloud's megasync directory to mega-xanthus
-@monthly rclone sync local:/homelab/nextcloud/data/xanthus/files/megasync/ mega-xan:/ #Push from local to mega
+@monthly rclone sync local:/homelab/nextcloud/data/xanthus/files/megasync/ mega-xan:/ 
+#Push from local to mega
 @weekly rclone cleanup mega-xan:/
 
 #Use borgbackup to sync nextcloud locally and rclone to hetznerstoragebox
-@daily borg create /mnt/borgback/nextcloud/::$(date +"\%Y-\%m-\%d") /homelab/nextcloud/data/xanthus/files/
+@daily borg create --list /mnt/borgback/nextcloud::archive-{hostname}-{now} /homelab/nextcloud/data/xanthus/files/
 @weekly rclone sync local:/mnt/borgback/nextcloud/ hetznerstoragebox:/borgbackup
 @weekly rclone sync local:/homelab/nextcloud/data/xanthus/files hetznerstoragebox:/nextcloud
 @weekly rclone cleanup hetznerstoragebox:/
