@@ -24,14 +24,15 @@
 
 #Backup nextcloud's megasync directory to mega-xanthus
 @monthly rclone sync local:/homelab/nextcloud/data/xanthus/files/megasync/ mega-xan:/ 
-#Push from local to mega
 @weekly rclone cleanup mega-xan:/
 
 #Use borgbackup to sync nextcloud locally and rclone to hetznerstoragebox
 @daily borg create --list /mnt/borgback/nextcloud::archive-{hostname}-{now} /homelab/nextcloud/data/xanthus/files/
-@weekly rclone sync local:/mnt/borgback/nextcloud/ hetznerstoragebox:/borgbackup
-@weekly rclone sync local:/homelab/nextcloud/data/xanthus/files hetznerstoragebox:/nextcloud
+@weekly rclone sync local:/mnt/borgback/nextcloud/ hetznerstoragebox:/nextcloud-borgbackup-archive
 @weekly rclone cleanup hetznerstoragebox:/
 
 #Backup game archives from pterodactyl to my storage box
 @weekly rclone sync pterobox:/var/lib/pterodactyl/backups local:/homelab/pterobox-backup/backups; rclone sync local:/homelab/pterobox-backup/backups hetznerstoragebox:/archives/pterodactyl
+
+#Backup Homelab Dir to hetzner
+@weekly rclone sync loacal:/homelab/ hetznerstoragebox:/homelab-mirror
