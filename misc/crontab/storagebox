@@ -22,6 +22,9 @@
 # 
 # m h  dom mon dow   command
 
+#Place the current date and time in the homelab dir so that when archives are taken its easily read
+@daily date > /homelab/archive-date.txt
+
 #Backup nextcloud's megasync directory to mega-xanthus
 @monthly rclone sync local:/homelab/nextcloud/data/xanthus/files/megasync/ mega-xan:/ 
 @weekly rclone cleanup mega-xan:/
@@ -31,8 +34,8 @@
 @weekly rclone sync local:/mnt/borgback/nextcloud/ hetznerstoragebox:/nextcloud-borgbackup-archive
 @weekly rclone cleanup hetznerstoragebox:/
 
-#Backup game archives from pterodactyl to my storage box
-@weekly rclone sync pterobox:/var/lib/pterodactyl/backups local:/homelab/pterobox-backup/backups
-
 #Backup Homelab Dir to hetzner
-@weekly rclone sync loacal:/homelab/ hetznerstoragebox:/homelab-mirror
+@weekly rclone sync local:/homelab/ hetznerstoragebox:/homelab-mirror
+
+#backup v's mc server
+@daily rclone sync gamebox:/homelab/viriditys-mc local:/home/temp && cd /home/temp && 7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on /homelab/backups/viriditys-mc/viriditys-mc_$(date +\%Y\%m\%d).7z * && rm -rf /home/temp
