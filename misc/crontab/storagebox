@@ -40,5 +40,7 @@
 #backup v's mc server
 #@daily rclone sync gamebox:/homelab/viriditys-mc local:/home/temp && cd /home/temp && 7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on /homelab/backups/viriditys-mc/viriditys-mc_$(date +\%Y\%m\%d).7z * && rm -rf /home/temp
 
-#Backup mc-xvr from oraclevps locally
-@weekly rclone sync oraclevps:/home/ubuntu/mc-xvr local:/home/temp && cd /home/temp && 7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on /homelab/backups/mc-xvr/mc-xvr_$(date +\%Y\%m\%d).7z * && rm -rf /home/temp
+#Backup mc-servers from oraclevps locally
+@weekly rclone sync oraclevps:/home/ubuntu/mc-xvr/backups local:/homelab/backups/mc-xvr
+@weekly rclone sync oraclevps:/home/ubuntu/mc-bchg/backups local:/homelab/backups/mc-bchg
+@weekly rclone sync oraclevps:/home/ubuntu/mc-stellcass/backups local:/homelab/backups/mc-stellcass
