@@ -22,12 +22,15 @@
 # 
 # m h  dom mon dow   command
 
-* * * * * chmod a=rwx /home/ubuntu/ -R
-@daily cd /home/ubuntu/mc-xvr/mc-data && 7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on /home/ubuntu/mc-xvr/backups/mc-xvr_$(date +\%Y\%m\%d).7z *
+* * * * * chmod a=rwx /home/ubuntu/mc* -R
+@daily cd /home/ubuntu/mc-xvr/mc-data && 7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on /home/ubuntu/mc-xvr/backups/mc-xvr_$(date +\%Y\-\%m\-\%d).7z *
 @daily docker restart mc-xvr
+@daily find /home/ubuntu/mc-xvr/backups/ -name "mc-xvr_*.7z" -type f -mtime +7 -delete
 
-@daily cd /home/ubuntu/mc-bchg/mc-data && 7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on /home/ubuntu/mc-bchg/backups/mc-bchg_$(date +\%Y\%m\%d).7z *
+@daily cd /home/ubuntu/mc-bchg/mc-data && 7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on /home/ubuntu/mc-bchg/backups/mc-bchg_$(date +\%Y\-\%m\-\%d).7z *
 @daily docker restart mc-xvr
+@daily find /home/ubuntu/mc-bchg/backups/ -name "mc-bchg_*.7z" -type f -mtime +7 -delete
 
-@daily cd /home/ubuntu/mc-stellcass/mc-data && 7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on /home/ubuntu/mc-stellcass/backups/mc-stellcass_$(date +\%Y\%m\%d).7z *
+@daily cd /home/ubuntu/mc-stellcass/mc-data && 7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on /home/ubuntu/mc-stellcass/backups/mc-stellcass_$(date +\%Y\-\%m\-\%d).7z *
 @daily docker restart mc-stellcass
+@daily find /home/ubuntu/mc-stellcass/backups/ -name "mc-stellcass_*.7z" -type f -mtime +7 -delete
