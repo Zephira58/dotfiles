@@ -87,19 +87,19 @@ body {
     /* background and dark colors */
     --bg-1: #3A251C; /* dark buttons when clicked */
     --bg-2: #402820; /* dark buttons */
-    --bg-3: #462E26; /* spacing, secondary elements */
+    --bg-3: #0A0A0A; /* spacing, secondary elements – now much closer to #060606 */
     --bg-4: #2F1B12; /* main background color */
-    --hover: #F7CFE11E; /* channels and buttons when hovered */
-    --active: #F7CFE133; /* channels and buttons when clicked or selected */
-    --active-2: #F7CFE14D; /* extra state for transparent buttons */
-    --message-hover: #F7CFE11A; /* messages when hovered */
+    --hover: #FF8FBF1E; /* channels and buttons when hovered */
+    --active: #FF8FBF33; /* channels and buttons when clicked or selected */
+    --active-2: #FF8FBF4D; /* extra state for transparent buttons */
+    --message-hover: #FF8FBF1A; /* messages when hovered */
 
     /* accent colors */
-    --accent-1: #F7CFE1; /* links and other accent text */
-    --accent-2: #F7CFE1; /* small accent elements */
-    --accent-3: #F7CFE1; /* accent buttons */
-    --accent-4: #E5B9C9; /* accent buttons when hovered */
-    --accent-5: #D2A3B5; /* accent buttons when clicked */
+    --accent-1: #FF8FBF; /* links and other accent text – more saturated pink */
+    --accent-2: #FF8FBF; /* small accent elements */
+    --accent-3: #FF8FBF; /* accent buttons */
+    --accent-4: #FF6FA6; /* accent buttons when hovered – slightly deeper */
+    --accent-5: #FF5C9A; /* accent buttons when clicked – deeper still */
     --accent-new: var(--red-2); /* stuff that's normally red like mute/deafen buttons */
     --mention: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 90%) 40%, transparent); /* background of messages that mention you */
     --mention-hover: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 95%) 40%, transparent); /* background of messages that mention you when hovered */
