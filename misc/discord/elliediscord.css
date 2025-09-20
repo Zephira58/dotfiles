@@ -1,0 +1,110 @@
+/* -------------------------------------------------------------
+   ► NEW colour‑palette (pink + brown) – replace the whole :root block
+   ------------------------------------------------------------- */
+:root {
+    --colors: on;                 /* keep custom colours enabled */
+
+    /* -----------------------------------------------------------------
+       Text colours – light enough to read on the dark brown background
+       ----------------------------------------------------------------- */
+    --text-0: var(--bg-3);                         /* text on coloured elements      */
+    --text-1: hsl(340, 30%, 95%);   /* near‑white, for main headings  */
+    --text-2: hsl(340, 25%, 88%);   /* slightly softer for sub‑headings*/
+    --text-3: hsl(340, 20%, 78%);   /* regular body text               */
+    --text-4: hsl(340, 15%, 60%);   /* icons / secondary UI            */
+    --text-5: hsl(340, 12%, 45%);   /* muted text / timestamps         */
+
+    /* -----------------------------------------------------------------
+       Background / dark colours – built around the brown undertone
+       ----------------------------------------------------------------- */
+    /* Base brown (2F1B12) converted to HSL ≈ hsl(20,53%,13%) */
+    --bg-1: hsl(20, 53%, 18%);      /* dark buttons when clicked       */
+    --bg-2: hsl(20, 53%, 15%);      /* dark buttons                    */
+    --bg-3: hsl(20, 53%, 13%);      /* secondary panels / spacing      */
+    --bg-4: #2F1B12;                /* MAIN background (the deep brown) */
+    --hover: hsla(340, 30%, 50%, 0.12);   /* pink‑tint on hover   */
+    --active: hsla(340, 30%, 50%, 0.20);  /* pink‑tint when active */
+    --active-2: hsla(340, 30%, 50%, 0.30);/* extra active state   */
+    --message-hover: hsla(340, 30%, 50%, 0.10);/* hover over messages*/
+
+    /* -----------------------------------------------------------------
+       Accent colours – the soft pink highlight (#F7CFE1)
+       ----------------------------------------------------------------- */
+    /* #F7CFE1 → hsl(340, 61%, 89%) */
+    --accent-1: hsl(340, 61%, 89%);   /* links / accent text                */
+    --accent-2: #F7CFE1;              /* small accent elements (primary)   */
+    --accent-3: #F7CFE1;              /* accent buttons                     */
+    --accent-4: hsl(340, 50%, 80%);   /* accent buttons on hover            */
+    --accent-5: hsl(340, 45%, 73%);   /* accent buttons when clicked        */
+    --accent-new: var(--red-2);       /* keep red for “new” notifications  */
+
+    /* Mention / reply gradients – keep the same logic but use the new pink */
+    --mention: linear-gradient(to right,
+                color-mix(in hsl, var(--accent-2), transparent 90%) 40%,
+                transparent);
+    --mention-hover: linear-gradient(to right,
+                color-mix(in hsl, var(--accent-2), transparent 95%) 40%,
+                transparent);
+    --reply: linear-gradient(to right,
+                color-mix(in hsl, var(--text-3), transparent 90%) 40%,
+                transparent);
+    --reply-hover: linear-gradient(to right,
+                color-mix(in hsl, var(--text-3), transparent 95%) 40%,
+                transparent);
+
+    /* -----------------------------------------------------------------
+       Status indicator colours – keep the original palette (they fit
+       nicely over a dark brown canvas) – you can change them later if
+       you want a more “pink‑tinted” look.
+       ----------------------------------------------------------------- */
+    --online: var(--green-2);
+    --dnd: var(--red-2);
+    --idle: var(--yellow-2);
+    --streaming: var(--purple-2);
+    --offline: var(--text-4);
+
+    /* -----------------------------------------------------------------
+       Border colours – a subtle pink‑tint for light borders and the
+       brown‑tint for normal borders.
+       ----------------------------------------------------------------- */
+    --border-light: var(--hover);
+    --border: var(--active);
+    --border-hover: var(--active);
+    --button-border: hsla(20, 53%, 13%, 0.10); /* neutral dark brown border */
+
+    /* -----------------------------------------------------------------
+       Base colour families – we keep the original “rose‑pine” set
+       but shift the reds/greens/blues toward a warmer, softer hue.
+       Feel free to edit any of these if you want a stricter pink‑brown
+       scheme.
+       ----------------------------------------------------------------- */
+    --red-1: hsl(340, 70%, 78%);
+    --red-2: #eb6f92;          /* unchanged – works as a deeper pink */
+    --red-3: #eb6f92;
+    --red-4: hsl(340, 70%, 68%);
+    --red-5: hsl(340, 70%, 58%);
+
+    --green-1: hsl(30, 45%, 55%);   /* warm olive/bronze */
+    --green-2: #a57d5c;            /* muted brown‑green */
+    --green-3: #a57d5c;
+    --green-4: hsl(30, 45%, 45%);
+    --green-5: hsl(30, 45%, 35%);
+
+    --blue-1: hsl(20, 40%, 65%);    /* soft copper‑blue */
+    --blue-2: #d5a58a;
+    --blue-3: #d5a58a;
+    --blue-4: hsl(20, 40%, 55%);
+    --blue-5: hsl(20, 40%, 45%);
+
+    --yellow-1: hsl(35, 60%, 70%);
+    --yellow-2: #e8c29c;
+    --yellow-3: #e8c29c;
+    --yellow-4: hsl(35, 60%, 60%);
+    --yellow-5: hsl(35, 60%, 50%);
+
+    --purple-1: hsl(340, 30%, 80%);
+    --purple-2: #c89faf;
+    --purple-3: #c89faf;
+    --purple-4: hsl(340, 30%, 70%);
+    --purple-5: hsl(340, 30%, 60%);
+}
