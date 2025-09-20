@@ -1,110 +1,154 @@
-/* -------------------------------------------------------------
-   ► NEW colour‑palette (pink + brown) – replace the whole :root block
-   ------------------------------------------------------------- */
-:root {
-    --colors: on;                 /* keep custom colours enabled */
+/**
+ * @name midnight (rosé pine)
+ * @description A cherry blossom woody custom theme for Kurumi
+ * @author Zephira58
+ * @version 2.1.1
+ * @invite nz87hXyvcy
+ * @website https://github.com/refact0r/midnight-discord
+ * @source https://github.com/refact0r/midnight-discord/blob/master/themes/flavors/midnight-rose-pine.theme.css
+ * @authorId 508863359777505290
+ * @authorLink https://www.refact0r.dev
+ */
 
-    /* -----------------------------------------------------------------
-       Text colours – light enough to read on the dark brown background
-       ----------------------------------------------------------------- */
-    --text-0: var(--bg-3);                         /* text on coloured elements      */
-    --text-1: hsl(340, 30%, 95%);   /* near‑white, for main headings  */
-    --text-2: hsl(340, 25%, 88%);   /* slightly softer for sub‑headings*/
-    --text-3: hsl(340, 20%, 78%);   /* regular body text               */
-    --text-4: hsl(340, 15%, 60%);   /* icons / secondary UI            */
-    --text-5: hsl(340, 12%, 45%);   /* muted text / timestamps         */
+/* import theme modules */
+@import url('https://refact0r.github.io/midnight-discord/build/midnight.css');
 
-    /* -----------------------------------------------------------------
-       Background / dark colours – built around the brown undertone
-       ----------------------------------------------------------------- */
-    /* Base brown (2F1B12) converted to HSL ≈ hsl(20,53%,13%) */
-    --bg-1: hsl(20, 53%, 18%);      /* dark buttons when clicked       */
-    --bg-2: hsl(20, 53%, 15%);      /* dark buttons                    */
-    --bg-3: hsl(20, 53%, 13%);      /* secondary panels / spacing      */
-    --bg-4: #2F1B12;                /* MAIN background (the deep brown) */
-    --hover: hsla(340, 30%, 50%, 0.12);   /* pink‑tint on hover   */
-    --active: hsla(340, 30%, 50%, 0.20);  /* pink‑tint when active */
-    --active-2: hsla(340, 30%, 50%, 0.30);/* extra active state   */
-    --message-hover: hsla(340, 30%, 50%, 0.10);/* hover over messages*/
+body {
+    /* font, change to '' for default discord font */
+    --font: 'figtree'; /* change to '' for default discord font */
+    --code-font: ''; /* change to '' for default discord font */
+    font-weight: 400 /* normal text font weight. DOES NOT AFFECT BOLD TEXT */;
 
-    /* -----------------------------------------------------------------
-       Accent colours – the soft pink highlight (#F7CFE1)
-       ----------------------------------------------------------------- */
-    /* #F7CFE1 → hsl(340, 61%, 89%) */
-    --accent-1: hsl(340, 61%, 89%);   /* links / accent text                */
-    --accent-2: #F7CFE1;              /* small accent elements (primary)   */
-    --accent-3: #F7CFE1;              /* accent buttons                     */
-    --accent-4: hsl(340, 50%, 80%);   /* accent buttons on hover            */
-    --accent-5: hsl(340, 45%, 73%);   /* accent buttons when clicked        */
-    --accent-new: var(--red-2);       /* keep red for “new” notifications  */
+    /* sizes */
+    --gap: 12px; /* spacing between panels */
+    --divider-thickness: 4px; /* thickness of unread messages divider and highlighted message borders */
+    --border-thickness: 1px; /* thickness of borders around main panels. DOES NOT AFFECT OTHER BORDERS */
 
-    /* Mention / reply gradients – keep the same logic but use the new pink */
-    --mention: linear-gradient(to right,
-                color-mix(in hsl, var(--accent-2), transparent 90%) 40%,
-                transparent);
-    --mention-hover: linear-gradient(to right,
-                color-mix(in hsl, var(--accent-2), transparent 95%) 40%,
-                transparent);
-    --reply: linear-gradient(to right,
-                color-mix(in hsl, var(--text-3), transparent 90%) 40%,
-                transparent);
-    --reply-hover: linear-gradient(to right,
-                color-mix(in hsl, var(--text-3), transparent 95%) 40%,
-                transparent);
+    /* animation/transition options */
+    --animations: on; /* off: disable animations/transitions, on: enable animations/transitions */
+    --list-item-transition: 0.2s ease; /* transition for list items */
+    --dms-icon-svg-transition: 0.4s ease; /* transition for the dms icon */
+    --border-hover-transition: 0.2s ease; /* transition for borders when hovered */
 
-    /* -----------------------------------------------------------------
-       Status indicator colours – keep the original palette (they fit
-       nicely over a dark brown canvas) – you can change them later if
-       you want a more “pink‑tinted” look.
-       ----------------------------------------------------------------- */
-    --online: var(--green-2);
-    --dnd: var(--red-2);
-    --idle: var(--yellow-2);
-    --streaming: var(--purple-2);
-    --offline: var(--text-4);
+    /* top bar options */
+    --top-bar-height: var(--gap); /* height of the top bar (discord default is 36px, old discord style is 24px, var(--gap) recommended if button position is set to titlebar) */
+    --top-bar-button-position: titlebar; /* off: default position, hide: hide buttons completely, serverlist: move inbox button to server list, titlebar: move inbox button to channel titlebar (will hide title) */
+    --top-bar-title-position: off; /* off: default centered position, hide: hide title completely, left: left align title (like old discord) */
+    --subtle-top-bar-title: off; /* off: default, on: hide the icon and use subtle text color (like old discord) */
 
-    /* -----------------------------------------------------------------
-       Border colours – a subtle pink‑tint for light borders and the
-       brown‑tint for normal borders.
-       ----------------------------------------------------------------- */
-    --border-light: var(--hover);
-    --border: var(--active);
-    --border-hover: var(--active);
-    --button-border: hsla(20, 53%, 13%, 0.10); /* neutral dark brown border */
+    /* window controls */
+    --custom-window-controls: on; /* off: default window controls, on: custom window controls */
+    --window-control-size: 14px; /* size of custom window controls */
 
-    /* -----------------------------------------------------------------
-       Base colour families – we keep the original “rose‑pine” set
-       but shift the reds/greens/blues toward a warmer, softer hue.
-       Feel free to edit any of these if you want a stricter pink‑brown
-       scheme.
-       ----------------------------------------------------------------- */
-    --red-1: hsl(340, 70%, 78%);
-    --red-2: #eb6f92;          /* unchanged – works as a deeper pink */
-    --red-3: #eb6f92;
-    --red-4: hsl(340, 70%, 68%);
-    --red-5: hsl(340, 70%, 58%);
+    /* dms button options */
+    --custom-dms-icon: hide; /* off: use default discord icon, hide: remove icon entirely, custom: use custom icon */
+    --dms-icon-svg-url: url('https://refact0r.github.io/midnight-discord/assets/Font_Awesome_5_solid_moon.svg'); /* icon svg url. MUST BE A SVG. */
+    --dms-icon-svg-size: 90%; /* size of the svg (css mask-size property) */
+    --dms-icon-color-before: var(--icon-secondary); /* normal icon color */
+    --dms-icon-color-after: var(--white); /* icon color when button is hovered/selected */
+    --custom-dms-background: image; /* off to disable, image to use a background image (must set url variable below), color to use a custom color/gradient */
+    --dms-background-image-url: url('https://raw.githubusercontent.com/rose-pine/rose-pine-theme/main/assets/icon.png'); /* url of the background image */
+    --dms-background-image-size: cover; /* size of the background image (css background-size property) */
+    --dms-background-color: linear-gradient(70deg, var(--blue-2), var(--purple-2), var(--red-2)); /* fixed color/gradient (css background property) */
 
-    --green-1: hsl(30, 45%, 55%);   /* warm olive/bronze */
-    --green-2: #a57d5c;            /* muted brown‑green */
-    --green-3: #a57d5c;
-    --green-4: hsl(30, 45%, 45%);
-    --green-5: hsl(30, 45%, 35%);
+    /* background image options */
+    --background-image: off; /* off: no background image, on: enable background image (must set url variable below) */
+    --background-image-url: url(''); /* url of the background image */
 
-    --blue-1: hsl(20, 40%, 65%);    /* soft copper‑blue */
-    --blue-2: #d5a58a;
-    --blue-3: #d5a58a;
-    --blue-4: hsl(20, 40%, 55%);
-    --blue-5: hsl(20, 40%, 45%);
+    /* transparency/blur options */
+    /* NOTE: TO USE TRANSPARENCY/BLUR, YOU MUST HAVE TRANSPARENT BG COLORS. FOR EXAMPLE: --bg-4: hsla(220, 15%, 10%, 0.7); */
+    --transparency-tweaks: off; /* off: no changes, on: remove some elements for better transparency */
+    --remove-bg-layer: off; /* off: no changes, on: remove the base --bg-3 layer for use with window transparency (WILL OVERRIDE BACKGROUND IMAGE) */
+    --panel-blur: off; /* off: no changes, on: blur the background of panels */
+    --blur-amount: 12px; /* amount of blur */
+    --bg-floating: var(--bg-3); /* set this to a more opaque color if floating panels look too transparent. only applies if panel blur is on  */
 
-    --yellow-1: hsl(35, 60%, 70%);
-    --yellow-2: #e8c29c;
-    --yellow-3: #e8c29c;
-    --yellow-4: hsl(35, 60%, 60%);
-    --yellow-5: hsl(35, 60%, 50%);
+    /* chatbar options */
+    --custom-chatbar: aligned; /* off: default chatbar, aligned: chatbar aligned with the user panel, separated: chatbar separated from chat */
+    --chatbar-height: 47px; /* height of the chatbar (52px by default, 47px recommended for aligned, 56px recommended for separated) */
+    --chatbar-padding: 8px; /* padding of the chatbar. only applies in aligned mode. */
 
-    --purple-1: hsl(340, 30%, 80%);
-    --purple-2: #c89faf;
-    --purple-3: #c89faf;
-    --purple-4: hsl(340, 30%, 70%);
-    --purple-5: hsl(340, 30%, 60%);
+    /* other options */
+    --small-user-panel: on; /* off: default user panel, on: smaller user panel like in old discord */
 }
+
+/* color options */
+:root {
+    --colors: on; /* off: discord default colors, on: midnight custom colors */
+
+    /* text colors */
+    --text-0: var(--bg-3); /* text on colored elements */
+    --text-1: #F7F3F5; /* other normally white text */
+    --text-2: #EEDCE0; /* headings and important text */
+    --text-3: #D8B5C0; /* normal text */
+    --text-4: #B58A9F; /* icon buttons and channels */
+    --text-5: #8C5F70; /* muted channels/chats and timestamps */
+
+    /* background and dark colors */
+    --bg-1: #3A251C; /* dark buttons when clicked */
+    --bg-2: #402820; /* dark buttons */
+    --bg-3: #462E26; /* spacing, secondary elements */
+    --bg-4: #2F1B12; /* main background color */
+    --hover: #F7CFE11E; /* channels and buttons when hovered */
+    --active: #F7CFE133; /* channels and buttons when clicked or selected */
+    --active-2: #F7CFE14D; /* extra state for transparent buttons */
+    --message-hover: #F7CFE11A; /* messages when hovered */
+
+    /* accent colors */
+    --accent-1: #F7CFE1; /* links and other accent text */
+    --accent-2: #F7CFE1; /* small accent elements */
+    --accent-3: #F7CFE1; /* accent buttons */
+    --accent-4: #E5B9C9; /* accent buttons when hovered */
+    --accent-5: #D2A3B5; /* accent buttons when clicked */
+    --accent-new: var(--red-2); /* stuff that's normally red like mute/deafen buttons */
+    --mention: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 90%) 40%, transparent); /* background of messages that mention you */
+    --mention-hover: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 95%) 40%, transparent); /* background of messages that mention you when hovered */
+    --reply: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 90%) 40%, transparent); /* background of messages that reply to you */
+    --reply-hover: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 95%) 40%, transparent); /* background of messages that reply to you when hovered */
+
+    /* status indicator colors */
+    --online: var(--green-2); /* change to #43a25a for default */
+    --dnd: var(--red-2); /* change to #d83a42 for default */
+    --idle: var(--yellow-2); /* change to #ca9654 for default */
+    --streaming: var(--purple-2); /* change to #593695 for default */
+    --offline: var(--text-4); /* change to #83838b for default offline color */
+
+    /* border colors */
+    --border-light: var(--hover); /* general light border color */
+    --border: var(--active); /* general normal border color */
+    --border-hover: var(--active); /* border color of panels when hovered */
+    --button-border: #462E260A; /* neutral border color of buttons (10% opacity) */
+
+    /* base colors */
+    --red-1: #FF9AA2;
+    --red-2: #EB6F92;
+    --red-3: #EB6F92;
+    --red-4: #D05E80;
+    --red-5: #B04C6F;
+
+    --green-1: #A57D5C;
+    --green-2: #A57D5C;
+    --green-3: #A57D5C;
+    --green-4: #8F694F;
+    --green-5: #79553F;
+
+    --blue-1: #D5A58A;
+    --blue-2: #D5A58A;
+    --blue-3: #D5A58A;
+    --blue-4: #B89473;
+    --blue-5: #9F7C5F;
+
+    --yellow-1: #E8C29C;
+    --yellow-2: #E8C29C;
+    --yellow-3: #E8C29C;
+    --yellow-4: #D1AE86;
+    --yellow-5: #BB9A71;
+
+    --purple-1: #C89FAF;
+    --purple-2: #C89FAF;
+    --purple-3: #C89FAF;
+    --purple-4: #B5859B;
+    --purple-5: #A16B86;
+}
+
+/* Edit made by Zephira for ellie/kurumi */
