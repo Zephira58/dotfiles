@@ -1,0 +1,114 @@
+/**
+ * @name Scriptorium
+ * @description A rounded Discord theme with an aged parchment and dark oak wood aesthetic.
+ * @author Zephira58
+ * @version 1.0.0
+ * @invite xeAEyzAWEv
+ * @website https://zephira.uk/#
+ * @source https://github.com/Zephira58/dotfiles/blob/main/misc/discord/scriptorium.css
+ * @authorId 292971545956188160
+ * @authorLink https://zephira.uk/
+*/
+
+/* import theme modules */
+@import url('https://refact0r.github.io/midnight-discord/build/midnight.css');
+/* IMPORTANT: For this font to display, you need to import it.
+   If 'Excalifont' isn't available, you might try a similar script font like 'Marck Script' or 'Sacramento'.
+   Example import (if Excalifont were available on Google Fonts):
+@import url('https://fonts.googleapis.com/css2?family=Excalifont&display=swap');
+*/
+
+body {
+    /* font, change to '' for default discord font */
+    --font: 'Excalifont', cursive; /* CHANGED: Switched to Excalifont (or similar cursive fallback) for a parchment-like, academic script aesthetic. */
+
+    /* sizes */
+    --gap: 12px; /* spacing between panels */
+    --divider-thickness: 4px; /* thickness of unread messages divider and highlighted message borders */
+
+    /* animation/transition options */
+    --animations: on; /* turn off to disable all midnight animations/transitions */
+    --list-item-transition: 0.2s ease; /* transition for list items */
+    --dms-icon-svg-transition: 0.4s ease; /* transition for the dms icon */
+
+    /* top bar options */
+    --move-top-bar-buttons: off; /* turn on to move inbox button to the server list (recommend setting top bar height to 24px) */
+    --custom-app-top-bar-height: 32px; /* height of the titlebar/top bar (default is 36px)*/
+
+    /* window controls */
+    --custom-window-controls: on; /* turn off to use discord default window controls */
+    --window-control-size: 14px; /* size of custom window controls */
+
+    /* dms button icon options */
+    --dms-icon: on; /* set to default to use discord icon, on to use custom icon, off to disable completely */
+    --dms-icon-svg-url: url('https://upload.wikimedia.org/wikipedia/commons/c/c4/Font_Awesome_5_solid_moon.svg'); /* icon svg url. MUST BE A SVG. */
+    --dms-icon-svg-size: 90%; /* size of the svg (css mask-size) */
+    --dms-icon-color-before: var(--icon-secondary); /* normal icon color */
+    --dms-icon-color-after: var(--white); /* icon color when button is hovered/selected */
+
+    /* dms button background options */
+    --dms-background: off; /* off to disable, image to use a background image, color to use a custom color/gradient */
+    --dms-background-image-url: url(''); /* url of the background image */
+    --dms-background-image-size: cover; /* size of the background image (css background-size) */
+    --dms-background-color: linear-gradient(70deg, var(--brown-2), var(--brown-3), var(--brown-4)); /* fixed color/gradient (css background) */
+
+    /* background image options */
+    --background-image: off; 
+    --background-image-url: url(''); 
+
+    /* transparency/blur options */
+    --transparency-tweaks: off; /* turn on to remove some elements for better transparency */
+    --remove-bg-layer: off; /* turn on to remove the base --bg-3 layer for use with window transparency (WILL OVERRIDE BACKGROUND IMAGE) */
+    --panel-blur: off; /* turn on to blur the background of panels */
+    --blur-amount: 12px; /* amount of blur */
+    --bg-floating: var(--bg-3); /* you can set this to a more opaque color if floating panels look too transparent */
+
+    /* other options */
+    --small-user-panel: off; /* turn on to make the user panel smaller like in old discord */
+}
+
+/* color options */
+:root {
+    --colors: on; /* turn off to use discord default colors */
+
+    /* TEXT COLORS (Parchment/Off-White Palette) */
+    --text-0: var(--bg-4); /* text on colored elements */
+    --text-1: hsl(30, 20%, 95%); /* other normally white text (near white off-white) */
+    --text-2: hsl(30, 20%, 80%); /* headings and important text (light parchment) */
+    --text-3: hsl(30, 15%, 70%); /* normal text (medium parchment) */
+    --text-4: hsl(30, 10%, 60%); /* icon buttons and channels (muted parchment) */
+    --text-5: hsl(30, 5%, 40%); /* muted channels/chats and timestamps (darker muted text) */
+
+    /* BACKGROUND AND DARK COLORS (Dark Brown/Oak Palette) */
+    --bg-1: hsla(20, 15%, 25%, 1); /* dark buttons when clicked (darker brown) */
+    --bg-2: hsla(20, 15%, 20%, 1); /* dark buttons (medium-dark brown) */
+    --bg-3: hsla(20, 15%, 15%, 1); /* spacing, secondary elements (dark brown/main panel color) */
+    --bg-4: hsla(20, 15%, 10%, 1); /* main background color (very dark brown/near black) */
+    --hover: hsla(30, 15%, 80%, 0.1); /* channels and buttons when hovered (subtle parchment hover) */
+    --active: hsla(30, 15%, 80%, 0.2); /* channels and buttons when clicked or selected */
+    --active-2: hsla(30, 15%, 80%, 0.3); /* extra state for transparent buttons */
+    --message-hover: hsla(30, 15%, 80%, 0.05); /* messages when hovered */
+
+    /* ACCENT COLORS (Medium Brown/Sepia Palette) */
+    --accent-1: var(--brown-1); /* links and other accent text */
+    --accent-2: var(--brown-2); /* small accent elements */
+    --accent-3: var(--brown-3); /* accent buttons */
+    --accent-4: var(--brown-4); /* accent buttons when hovered */
+    --accent-5: var(--brown-5); /* accent buttons when clicked */
+    --accent-new: var(--accent-3); /* stuff that's normally red like mute/deafen buttons, now a distinct brown */
+    --mention: linear-gradient(to right, color-mix(in hsl, var(--brown-2), transparent 90%) 40%, transparent); /* background of messages that mention you */
+    --mention-hover: linear-gradient(to right, color-mix(in hsl, var(--brown-2), transparent 95%) 40%, transparent); /* background of messages that mention you when hovered */
+    --reply: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 90%) 40%, transparent); /* background of messages that reply to you */
+    --reply-hover: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 95%) 40%, transparent); /* background of messages that reply to you when hovered */
+
+    /* STATUS INDICATOR COLORS (Using the brown/parchment palette for status indicators) */
+    --online: var(--green-2); /* A warm, slightly desaturated olive/green-brown for online */
+    --dnd: var(--red-2); /* A deep, rich red-brown for dnd */
+    --idle: var(--yellow-2); /* A muted sepia/yellow-brown for idle */
+    --streaming: var(--purple-2); /* A deep, mature wine/purple-brown for streaming */
+    --offline:
+
+/* * This theme is a private edit of the 'midnight' theme by refact0r (https://github.com/refact0r/midnight-discord).
+ * Credit for the original source material goes entirely to refact0r.
+ * This file is for private, non-commercial use only.
+ */
