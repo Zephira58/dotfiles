@@ -12,71 +12,79 @@
 
 /* import theme modules */
 @import url('https://refact0r.github.io/midnight-discord/build/midnight.css');
-/* IMPORTANT: For this font to display, you need to import it.
-   If 'Excalifont' isn't available, you might try a similar script font like 'Marck Script' or 'Sacramento'.
-   Example import (if Excalifont were available on Google Fonts):
-@import url('https://fonts.googleapis.com/css2?family=Excalifont&display=swap');
+/* NOTE: You will need to install the font named 'Excalifont' on your system
+   or import it via a CSS URL for the font to display correctly.
+   If 'Excalifont' is a local alias for a web font, you would add its import here.
 */
 
 body {
     /* font, change to '' for default discord font */
-    --font: 'Excalifont', cursive; /* CHANGED: Switched to Excalifont (or similar cursive fallback) for a parchment-like, academic script aesthetic. */
+    --font: 'Excalifont', sans-serif; /* Confirmed: Font set to 'Excalifont' */
+    --code-font: ''; /* change to '' for default discord font */
+    font-weight: 400 /* normal text font weight. DOES NOT AFFECT BOLD TEXT */;
 
     /* sizes */
     --gap: 12px; /* spacing between panels */
     --divider-thickness: 4px; /* thickness of unread messages divider and highlighted message borders */
+    --border-thickness: 1px; /* thickness of borders around main panels. DOES NOT AFFECT OTHER BORDERS */
 
     /* animation/transition options */
-    --animations: on; /* turn off to disable all midnight animations/transitions */
+    --animations: on; /* off: disable animations/transitions, on: enable animations/transitions */
     --list-item-transition: 0.2s ease; /* transition for list items */
     --dms-icon-svg-transition: 0.4s ease; /* transition for the dms icon */
+    --border-hover-transition: 0.2s ease; /* transition for borders when hovered */
 
     /* top bar options */
-    --move-top-bar-buttons: off; /* turn on to move inbox button to the server list (recommend setting top bar height to 24px) */
-    --custom-app-top-bar-height: 32px; /* height of the titlebar/top bar (default is 36px)*/
+    --top-bar-height: var(--gap); /* height of the top bar (discord default is 36px, old discord style is 24px, var(--gap) recommended if button position is set to titlebar) */
+    --top-bar-button-position: titlebar; /* off: default position, hide: hide buttons completely, serverlist: move inbox button to server list, titlebar: move inbox button to channel titlebar (will hide title) */
+    --top-bar-title-position: off; /* off: default centered position, hide: hide title completely, left: left align title (like old discord) */
+    --subtle-top-bar-title: off; /* off: default, on: hide the icon and use subtle text color (like old discord) */
 
     /* window controls */
-    --custom-window-controls: on; /* turn off to use discord default window controls */
+    --custom-window-controls: on; /* off: default window controls, on: custom window controls */
     --window-control-size: 14px; /* size of custom window controls */
 
-    /* dms button icon options */
-    --dms-icon: on; /* set to default to use discord icon, on to use custom icon, off to disable completely */
-    --dms-icon-svg-url: url('https://upload.wikimedia.org/wikipedia/commons/c/c4/Font_Awesome_5_solid_moon.svg'); /* icon svg url. MUST BE A SVG. */
-    --dms-icon-svg-size: 90%; /* size of the svg (css mask-size) */
-    --dms-icon-color-before: var(--icon-secondary); /* normal icon color */
+    /* dms button options */
+    --custom-dms-icon: custom; /* Ensure custom icon is on for the URL below to apply */
+    --dms-icon-svg-url: url('https://raw.githubusercontent.com/Zephira58/dotfiles/refs/heads/main/misc/discord/scriptorium.svg');
+    --dms-icon-svg-size: 90%; /* size of the svg (css mask-size property) */
+    --dms-icon-color-before: var(--icon-secondary); /* REVERTED: Back to default dark icon color variable */
     --dms-icon-color-after: var(--white); /* icon color when button is hovered/selected */
-
-    /* dms button background options */
-    --dms-background: off; /* off to disable, image to use a background image, color to use a custom color/gradient */
+    --custom-dms-background: color; /* Scriptorium Background: Use color/gradient */
     --dms-background-image-url: url(''); /* url of the background image */
-    --dms-background-image-size: cover; /* size of the background image (css background-size) */
-    --dms-background-color: linear-gradient(70deg, var(--brown-2), var(--brown-3), var(--brown-4)); /* fixed color/gradient (css background) */
+    --dms-background-image-size: cover; /* size of the background image (css background-size property) */
+    --dms-background-color: linear-gradient(70deg, var(--brown-2), var(--brown-3), var(--brown-4)); /* Scriptorium Color Palette */
 
     /* background image options */
-    --background-image: off; 
-    --background-image-url: url(''); 
+    --background-image: off; /* Scriptorium Aesthetic: OFF for clear readability */
+    --background-image-url: url(''); /* url of the background image */
 
     /* transparency/blur options */
-    --transparency-tweaks: off; /* turn on to remove some elements for better transparency */
-    --remove-bg-layer: off; /* turn on to remove the base --bg-3 layer for use with window transparency (WILL OVERRIDE BACKGROUND IMAGE) */
-    --panel-blur: off; /* turn on to blur the background of panels */
+    --transparency-tweaks: off; /* off: no changes, on: remove some elements for better transparency */
+    --remove-bg-layer: off; /* off: no changes, on: remove the base --bg-3 layer for use with window transparency (WILL OVERRIDE BACKGROUND IMAGE) */
+    --panel-blur: off; /* off: no changes, on: blur the background of panels */
     --blur-amount: 12px; /* amount of blur */
-    --bg-floating: var(--bg-3); /* you can set this to a more opaque color if floating panels look too transparent */
+    --bg-floating: var(--bg-3); /* set this to a more opaque color if floating panels look too transparent. only applies if panel blur is on  */
+
+    /* chatbar options */
+    --custom-chatbar: aligned; /* off: default chatbar, aligned: chatbar aligned with the user panel, separated: chatbar separated from chat */
+    --chatbar-height: 47px; /* height of the chatbar (52px by default, 47px recommended for aligned, 56px recommended for separated) */
+    --chatbar-padding: 8px; /* padding of the chatbar. only applies in aligned mode. */
 
     /* other options */
-    --small-user-panel: off; /* turn on to make the user panel smaller like in old discord */
+    --small-user-panel: on; /* off: default user panel, on: smaller user panel like in old discord */
 }
 
 /* color options */
 :root {
-    --colors: on; /* turn off to use discord default colors */
+    --colors: on; /* off: discord default colors, on: midnight custom colors */
 
     /* TEXT COLORS (Parchment/Off-White Palette) */
     --text-0: var(--bg-4); /* text on colored elements */
     --text-1: hsl(30, 20%, 95%); /* other normally white text (near white off-white) */
     --text-2: hsl(30, 20%, 80%); /* headings and important text (light parchment) */
     --text-3: hsl(30, 15%, 70%); /* normal text (medium parchment) */
-    --text-4: hsl(30, 10%, 60%); /* icon buttons and channels (muted parchment) */
+    --text-4: hsl(30, 10%, 60%); /* REVERTED: Icon buttons and channels (muted parchment) */
     --text-5: hsl(30, 5%, 40%); /* muted channels/chats and timestamps (darker muted text) */
 
     /* BACKGROUND AND DARK COLORS (Dark Brown/Oak Palette) */
@@ -95,18 +103,67 @@ body {
     --accent-3: var(--brown-3); /* accent buttons */
     --accent-4: var(--brown-4); /* accent buttons when hovered */
     --accent-5: var(--brown-5); /* accent buttons when clicked */
-    --accent-new: var(--accent-3); /* stuff that's normally red like mute/deafen buttons, now a distinct brown */
+    --accent-new: var(--red-2); /* stuff that's normally red like mute/deafen buttons, now deep red-brown */
     --mention: linear-gradient(to right, color-mix(in hsl, var(--brown-2), transparent 90%) 40%, transparent); /* background of messages that mention you */
     --mention-hover: linear-gradient(to right, color-mix(in hsl, var(--brown-2), transparent 95%) 40%, transparent); /* background of messages that mention you when hovered */
     --reply: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 90%) 40%, transparent); /* background of messages that reply to you */
     --reply-hover: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 95%) 40%, transparent); /* background of messages that reply to you when hovered */
 
-    /* STATUS INDICATOR COLORS (Using the brown/parchment palette for status indicators) */
-    --online: var(--green-2); /* A warm, slightly desaturated olive/green-brown for online */
-    --dnd: var(--red-2); /* A deep, rich red-brown for dnd */
-    --idle: var(--yellow-2); /* A muted sepia/yellow-brown for idle */
-    --streaming: var(--purple-2); /* A deep, mature wine/purple-brown for streaming */
-    --offline:
+    /* status indicator colors */
+    --online: var(--green-2); /* Olive/Green-Brown */
+    --dnd: var(--red-2); /* Deep Red-Brown */
+    --idle: var(--yellow-2); /* Muted Sepia/Yellow-Brown */
+    --streaming: var(--purple-2); /* Deep Wine/Purple-Brown */
+    --offline: var(--text-4); /* Muted parchment for offline */
+
+    /* border colors */
+    --border-light: hsl(30, 15%, 70%, 0.1); /* general light border color */
+    --border: hsl(30, 15%, 70%, 0.2); /* general normal border color */
+    --border-hover: hsl(30, 15%, 70%, 0.2); /* border color of panels when hovered */
+    --button-border: hsl(30, 0%, 100%, 0.1); /* neutral border color of buttons */
+
+    /* BASE COLORS (Brown/Sepia/Parchment Palette) */
+
+    /* Red = Deep Red-Brown (Mahogany) */
+    --red-1: oklch(50% 0.1 20);
+    --red-2: oklch(45% 0.1 20);
+    --red-3: oklch(40% 0.1 20);
+    --red-4: oklch(35% 0.1 20);
+    --red-5: oklch(30% 0.1 20);
+
+    /* Green = Olive/Dark Forest Green (Muted Earthy Green) */
+    --green-1: oklch(55% 0.1 130);
+    --green-2: oklch(50% 0.1 130);
+    --green-3: oklch(45% 0.1 130);
+    --green-4: oklch(40% 0.1 130);
+    --green-5: oklch(35% 0.1 130);
+
+    /* Blue = Deep Brown/Walnut (The primary accent color for links/buttons) */
+    --brown-1: oklch(65% 0.08 60); /* Lighter sepia/tan */
+    --brown-2: oklch(60% 0.08 60); /* Sepia/Medium Brown */
+    --brown-3: oklch(55% 0.08 60); /* Rich Brown */
+    --brown-4: oklch(50% 0.08 60); /* Darker Rich Brown */
+    --brown-5: oklch(45% 0.08 60); /* Deep Walnut Brown */
+    --blue-1: var(--brown-1);
+    --blue-2: var(--brown-2);
+    --blue-3: var(--brown-3);
+    --blue-4: var(--brown-4);
+    --blue-5: var(--brown-5);
+
+    /* Yellow = Muted Sepia/Old Gold (Aged Paper look) */
+    --yellow-1: oklch(75% 0.1 90);
+    --yellow-2: oklch(70% 0.1 90);
+    --yellow-3: oklch(65% 0.1 90);
+    --yellow-4: oklch(60% 0.1 90);
+    --yellow-5: oklch(55% 0.1 90);
+
+    /* Purple = Deep Wine/Plum Brown (Velvet/Antique feel) */
+    --purple-1: oklch(50% 0.1 330);
+    --purple-2: oklch(45% 0.1 330);
+    --purple-3: oklch(40% 0.1 330);
+    --purple-4: oklch(35% 0.1 330);
+    --purple-5: oklch(30% 0.1 330);
+}
 
 /* * This theme is a private edit of the 'midnight' theme by refact0r (https://github.com/refact0r/midnight-discord).
  * Credit for the original source material goes entirely to refact0r.
